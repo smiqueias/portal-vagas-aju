@@ -1,9 +1,45 @@
- {% extends 'base_generic.html' %}
+{% extends 'base_generic.html' %}
+{% block title %} Home {% endblock  %}
 
-{% block  content %}
+{% load static %}
 
-    
-        <a href='{% url 'login' %}'>ENTRE OU CADASTRE-SE PARA REGISTRAR UMA VAGA</a>
-        
+{% block css %}
 
-{% endblock%}
+{% endblock  %}
+
+{% block content %}
+  
+
+    {% for job in jobs %}  
+    <div class="mx-auto" style="padding-left: 30%;">
+    <div class="container mt-5">
+        <div class="card bg-light" style="width: 50%;">
+            <div class="card-body">
+                <!-- <h6 class="card-subtitle mb-2 text-muted">Full-stack</h6> -->
+                <!-- <h6 class="card-title">Full-stack</h6> -->
+                <h3 class="card-title">{{job.title}}</h3>
+                <h5 class="card-subtitle mb-2 text-muted">{{job.get_salary_display}}</h5>
+                <p class="card-text" style="text-align: justify;">{{job.description|linebreaks|truncatewords:20}}</p>
+                <div class="text-muted">Vaga postada em: {{job.create_at}}</div>
+                <a href="{{ job.get_absolute_url }}" class="card-link">Detalhes da vaga</a>
+                <!-- <a href="#" class="card-link">Another link</a> -->
+            </div>
+        </div>
+    </div>
+</div>
+    {% endfor %}
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+      <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+      <script src="../../assets/js/vendor/popper.min.js"></script>
+      <script src="../../dist/js/bootstrap.min.js"></script>
+{% endblock  %}

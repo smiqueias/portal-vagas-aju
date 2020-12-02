@@ -1,0 +1,18 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+    <div class="mx-auto" style="padding-left: 30%;">
+    <div class="container mt-5">
+        <div class="card bg-light" style="width: 50%;">
+            <div class="card-body">
+                <!-- <h6 class="card-subtitle mb-2 text-muted">Full-stack</h6> -->
+                <!-- <h6 class="card-title">Full-stack</h6> -->
+                <h3 class="card-title">{{vaga.title}}</h3>
+                <h5 class="card-subtitle mb-2 text-muted">{{vaga.get_salary_display}}</h5>
+                <p class="card-text" style="text-align: justify;">{{vaga.description}}</p>
+                <div class="text-muted">Contato: {{vaga.contact}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock  %}

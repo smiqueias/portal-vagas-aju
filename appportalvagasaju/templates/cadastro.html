@@ -1,0 +1,30 @@
+{% extends 'base_generic.html' %}
+
+{% block title %} Cadastro {% endblock  %}
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'assets/css/login.css' %}"
+{% endblock  %}
+
+{% block content %}
+    
+    <form class="box" action="{% url 'cadastro' %}" method="POST">
+        {% csrf_token %}
+        <h3>Cadastro</h3>
+        {% if messages %}
+            {% for m in messages %}
+                <div class="alert {{m.tags}}" role="alert">
+                    {{ m }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        
+        <input type="text" name="usuario" placeholder="Usuário">
+        <input type="text" name="email" placeholder="Email">
+        <input type="password" name="senha" placeholder="Senha">
+        <input type="password" name="confirmar-senha" placeholder="Confirmar Senha">
+        <input type="submit" name="criar-conta" value="Criar Conta">
+    </form>
+{% endblock  %}

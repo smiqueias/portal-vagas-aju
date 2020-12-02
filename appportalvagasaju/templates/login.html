@@ -1,0 +1,29 @@
+{% extends 'base_generic.html' %}
+
+{% block title %} Login {% endblock  %}
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'assets/css/login.css' %}"
+{% endblock  %}
+
+{% block content %}
+    
+    <form class="box" action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        <h3>Login</h3>
+        <br>
+        {% if messages %}
+            {% for m in messages %}
+            <div class="alert alert-danger" role="alert">
+                {{ m }}
+            </div>
+            {% endfor %}
+        {% endif %}
+        <input type="text" name="usuario" placeholder="Usuário ou email" required>
+        <input type="password" name="senha" placeholder="Senha" required>
+        <input type="submit" name="" value="ENTRAR">
+
+    </form>
+{% endblock  %}
